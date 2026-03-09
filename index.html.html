@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>万鼎图生日快乐</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --pink: #ff66a3;
+            --pink-deep: #d32f75;
+            --bg-light: #ffe6f2;
+            --card-radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #ffe6f2 0%, #ffe0f0 40%, #ffd1ec 70%, #ffb8df 100%);
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 520px;
+            margin: 20px auto;
+            background: rgba(255,255,255,0.95);
+            padding: 28px 24px 26px;
+            border-radius: var(--card-radius);
+            box-shadow: 0 18px 40px rgba(211,47,117,0.25);
+            position: relative;
+            overflow: hidden;
+            animation: cardIn 0.8s ease-out;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255,102,163,0.21) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        
+        @keyframes cardIn {
+            0% { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.96); 
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+        
+        h1 {
+            color: var(--pink-deep);
+            font-size: 2.3rem;
+            margin: 0 0 6px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            margin: 0 0 12px;
+            color: #a54b79;
+            font-size: 0.98rem;
+        }
+
+        h2 {
+            color: var(--pink);
+            margin: 0 0 6px;
+        }
+
+        .name-highlight {
+            color: var(--pink-deep);
+            font-weight: bold;
+        }
+        
+        .cake {
+            width: 150px;
+            height: 100px;
+            margin: 18px auto 8px;
+            position: relative;
+            filter: drop-shadow(0 8px 12px rgba(211,47,117,0.35));
+            transition: transform 0.25s ease;
+        }
+        
+        .cake.bounce {
+            animation: cakeBounce 0.5s ease;
+        }
+
+        @keyframes cakeBounce {
+            0% { transform: translateY(0) scale(1); }
+            30% { transform: translateY(-8px) scale(1.02); }
+            60% { transform: translateY(2px) scale(0.99); }
+            100% { transform: translateY(0) scale(1); }
+        }
+        
+        .layer {
+            position: absolute;
+            background: linear-gradient(#fbe1ee, #ff9ec0);
+            border-radius: 50% 50% 12px 12px;
+            border: 2px solid rgba(255,255,255,0.9);
+        }
+        
+        .bottom {
+            bottom: 0;
+            width: 150px;
+            height: 42px;
+        }
+        
+        .middle {
+            bottom: 23px;
+            width: 120px;
+            height: 34px;
+            left: 15px;
+        }
+        
+        .top {
+            bottom: 46px;
+            width: 90px;
+            height: 28px;
+            left: 30px;
+        }
+        
+        .candle {
+            width: 9px;
+            height: 26px;
+            background: repeating-linear-gradient(
+                90deg,
+                #ffcd00 0,
+                #ffcd00 4px,
+                #ff9ec0 4px,
+                #ff9ec0 8px
+            );
+            position: absolute;
+            top: -26px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+        
+        .flame {
+            width: 13px;
+            height: 22px;
+            background: radial-gradient(circle at 50% 20%, #fff8c7 0%, #ffde59 40%, #ff8c42 75%, #ff3c00 100%);
+            border-radius: 50% 50% 40% 40%;
+            position: absolute;
+            top: -44px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: flicker 0.55s infinite alternate;
+            box-shadow: 0 0 18px rgba(255,180,80,0.9);
+        }
+        
+        @keyframes flicker {
+            0%, 100% { 
+                transform: translateX(-50%) scale(1); 
+                opacity: 0.95;
+            }
+            50% { 
+                transform: translateX(-50%) scale(1.12); 
+                opacity: 1;
+            }
+        }
+        
+        .message-box {
+            background: #fff9fc;
+            border-left: 5px solid var(--pink);
+            padding: 14px 16px 14px;
+            margin: 16px 0 18px;
+            text-align: left;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .message-box::before {
+            content: "♡";
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-size: 1.2rem;
+            color: rgba(255,102,163,0.3);
+        }
+        
+        .message-box p {
+            margin: 4px 0;
+            line-height: 1.5;
+            color: #674b6b;
+        }
+        
+        .message-box strong {
+            color: var(--pink-deep);
+        }
+        
+        .form-group {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            font-size: 0.88rem;
+            color: #9b658c;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px 11px;
+            margin: 4px 0 8px;
+            border: 2px solid #ffcce6;
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: inherit;
+            box-sizing: border-box;
+            outline: none;
+            background: #fffefe;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(255,204,230,0.7);
+            transform: translateY(-1px);
+        }
+        
+        textarea {
+            height: 90px;
+            resize: vertical;
+        }
+        
+        .btn-group {
+            margin-top: 4px;
+        }
+
+        button {
+            background: linear-gradient(to right, var(--pink), var(--pink-deep));
+            color: white;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 999px;
+            font-size: 15px;
+            cursor: pointer;
+            margin: 8px 6px 4px;
+            transition: transform 0.18s, box-shadow 0.18s, filter 0.18s;
+            box-shadow: 0 8px 18px rgba(211,47,117,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 0, rgba(255,255,255,0.9) 0, transparent 55%);
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 26px rgba(211,47,117,0.55);
+            filter: brightness(1.03);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 14px rgba(211,47,117,0.4);
+            filter: brightness(0.98);
+        }
+        
+        .balloon {
+            position: fixed;
+            width: 40px;
+            height: 50px;
+            background: radial-gradient(#ff9ec0, #ff66a3);
+            border-radius: 50% 50% 45% 45%;
+            bottom: -60px;
+            z-index: -1;
+            box-shadow: 0 8px 12px rgba(211,47,117,0.45);
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -28px;
+            left: 50%;
+            width: 1px;
+            height: 32px;
+            background: rgba(196,129,157,0.7);
+            transform: translateX(-50%);
+        }
+        
+        footer {
+            margin-top: 14px;
+            color: #7e587e;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        footer span {
+            color: var(--pink-deep);
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.85rem;
+            }
+            .card {
+                padding: 22px 16px 20px;
+                border-radius: 18px;
+            }
+            .cake {
+                transform: scale(0.95);
+            }
+            button {
+                width: 46%;
+                padding: 10px 0;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 气球 -->
+    <div class="balloon" style="left:10%;animation-delay:0s"></div>
+    <div class="balloon" style="left:30%;animation-delay:1s"></div>
+    <div class="balloon" style="left:50%;animation-delay:2s"></div>
+    <div class="balloon" style="left:70%;animation-delay:3s"></div>
+    <div class="balloon" style="left:90%;animation-delay:4s"></div>
+    
+    <div class="card">
+        <h1 id="titleText">🎂 万鼎图，生日快乐！</h1>
+        <p class="subtitle">愿这一天，成为你一整年快乐的起点</p>
+        
+        <div class="cake" id="cake">
+            <div class="layer bottom"></div>
+            <div class="layer middle"></div>
+            <div class="layer top"></div>
+            <div class="candle"></div>
+            <div class="flame"></div>
+        </div>
+        
+        <div class="message-box">
+            <h2>专属生日祝福</h2>
+            <p id="message">
+                <strong>万鼎图</strong>，生日快乐！<br>
+                愿你眼里总有光芒，心中永存热爱，<br>
+                所有温柔与美好如约而至，<br>
+                未来的每一步，都走向更精彩的自己。
+            </p>
+        </div>
+
+        <div class="form-group">
+            <label for="name">给谁过生日：</label>
+            <input type="text" id="name" placeholder="输入寿星名字" value="万鼎图">
+        </div>
+
+        <div class="form-group">
+            <label for="customText">写下你的祝福：</label>
+            <textarea id="customText" placeholder="写下你对 TA 想说的话...">愿你不止生日这一天，而是往后的每一天，都被温柔以待，万事顺意，心想事成。</textarea>
+        </div>
+        
+        <div class="btn-group">
+            <button onclick="updateMessage()">更新祝福</button>
+            <button onclick="celebrate()">庆祝！</button>
+        </div>
+        
+        <footer>
+            <p>❤️ 为 <span>万鼎图</span> 精心准备的生日祝福 ❤️</p>
+            <p>愿你此生清澈明朗，所遇皆温柔，所行皆坦途</p>
+        </footer>
+    </div>
+
+    <script>
+        // 气球动画
+        const balloons = document.querySelectorAll('.balloon');
+        balloons.forEach((balloon, i) => {
+            balloon.style.animation = `floatUp 15s ${i}s linear infinite`;
+        });
+        
+        // 创建浮动动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes floatUp {
+                0% { transform: translateY(0) rotate(0); opacity: 0; }
+                10% { opacity: 1; }
+                100% { transform: translateY(-105vh) rotate(16deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        function updateMessage() {
+            const nameInput = document.getElementById('name');
+            const name = (nameInput.value || '万鼎图').trim() || '万鼎图';
+            const text = (document.getElementById('customText').value || '祝你生日快乐！').trim();
+            const safeText = text || '祝你生日快乐！';
+
+            // 更新标题和祝福内容
+            document.getElementById('titleText').textContent = `🎂 ${name}，生日快乐！`;
+            document.getElementById('message').innerHTML = `<strong>${name}</strong>，${safeText.replace(/\n/g, '<br>')}`;
+            
+            // 简单动画
+            const msgBox = document.querySelector('.message-box');
+            msgBox.style.transform = 'scale(1.04)';
+            msgBox.style.boxShadow = '0 8px 20px rgba(211,47,117,0.28)';
+            setTimeout(() => {
+                msgBox.style.transform = 'scale(1)';
+                msgBox.style.boxShadow = 'none';
+            }, 260);
+            
+            showMsg('🎁 你的专属祝福已更新');
+        }
+        
+        function celebrate() {
+            // 创建彩色纸屑
+            for (let i = 0; i < 55; i++) {
+                setTimeout(() => createConfetti(), i * 28);
+            }
+
+            // 蛋糕轻微跳动
+            const cake = document.getElementById('cake');
+            cake.classList.remove('bounce');
+            void cake.offsetWidth; // 触发重绘以重启动画
+            cake.classList.add('bounce');
+
+            showMsg('🎉 生日快乐，愿你此刻的心愿都能实现');
+        }
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            const colors = ['#ff66a3', '#66ffb3', '#668cff', '#ffde66', '#ffa3a3'];
+            const size = 8 + Math.random() * 6;
+            const isCircle = Math.random() > 0.5;
+
+            confetti.style.cssText = `
+                position:fixed;
+                width:${size}px;
+                height:${size * (isCircle ? 1 : 0.5)}px;
+                background:${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius:${isCircle ? '50%' : '4px'};
+                top:-10px;
+                left:${Math.random() * 100}vw;
+                z-index:9999;
+            `;
+            document.body.appendChild(confetti);
+            
+            const xOffset = Math.random() * 120 - 60;
+            const anim = confetti.animate([
+                { transform: 'translate(0,0) rotate(0)', opacity: 1 },
+                { transform: `translate(${xOffset}px, 105vh) rotate(${Math.random() * 540 - 270}deg)`, opacity: 0 }
+            ], { duration: 2200 + Math.random() * 2200, easing: 'cubic-bezier(0.3,0.1,0.2,1)' });
+            
+            anim.onfinish = () => confetti.remove();
+        }
+        
+        function showMsg(text) {
+            const msg = document.createElement('div');
+            msg.textContent = text;
+            msg.style.cssText = `
+                position:fixed;
+                bottom:20px;
+                right:20px;
+                max-width: 260px;
+                background:#d32f75;
+                color:white;
+                padding:10px 16px;
+                border-radius:10px;
+                z-index:10000;
+                font-size: 13px;
+                box-shadow:0 8px 18px rgba(211,47,117,0.55);
+                opacity:0;
+                transform:translateY(10px);
+                transition:opacity 0.25s ease, transform 0.25s ease;
+            `;
+            document.body.appendChild(msg);
+            
+            requestAnimationFrame(() => {
+                msg.style.opacity = '1';
+                msg.style.transform = 'translateY(0)';
+            });
+
+            setTimeout(() => {
+                msg.style.opacity = '0';
+                msg.style.transform = 'translateY(10px)';
+                setTimeout(() => msg.remove(), 400);
+            }, 2200);
+        }
+        
+        // 自动开始气球动画 & 初始提示
+        window.onload = () => {
+            showMsg('✨ 万鼎图，生日快乐！愿今天的每一刻都值得被记住');
+        };
+    </script>
+</body>
+</html>
